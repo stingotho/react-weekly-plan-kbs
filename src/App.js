@@ -4,13 +4,16 @@ import "./App.css";
 import NameInput from "./components/NameInput";
 import SubjectSelector from "./components/SubjectSelector";
 import WeekNumberInput from "./components/WeekNumberInput";
+import DateRangePicker from "./components/DateRangePicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 function App() {
   const [teacherName, setTeacherName] = useState("");
   const [selectedSubject, setSelectedSubject] = useState("");
   const [weekNumber, setWeekNumber] = useState("");
+  const [dateRange, setDateRange] = useState([null, null]);
+  const [startDate, endDate] = dateRange;
 
-  // const [dateRange, setDateRange] = useState({ start: null, end: null });
   // const [gradeLevel, setGradeLevel] = useState("");
   // const [unitTitle, setUnitTitle] = useState("");
   // const [unitDescription, setUnitDescription] = useState("");
@@ -41,6 +44,13 @@ function App() {
       <WeekNumberInput
         value={weekNumber}
         onChange={(e) => setWeekNumber(e.target.value)}
+      />
+      <DateRangePicker
+        startDate={startDate}
+        endDate={endDate}
+        onChange={(update) => {
+          setDateRange(update);
+        }}
       />
     </div>
   );
