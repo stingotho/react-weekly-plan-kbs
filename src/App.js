@@ -9,6 +9,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import GradeLevelSelector from "./components/GradeLevelSelector";
 import UnitTitleSelector from "./components/UnitTitleSelector";
 import UnitDescription from "./components/UnitDescription";
+import SessionInput from "./components/SessionInput";
 
 function App() {
   const [teacherName, setTeacherName] = useState("");
@@ -18,14 +19,12 @@ function App() {
   const [startDate, endDate] = dateRange;
   const [gradeLevel, setGradeLevel] = useState("");
   const [unitTitle, setUnitTitle] = useState("");
-
-  // const [unitDescription, setUnitDescription] = useState("");
-  // const [sessionDetails, setSessionDetails] = useState({
-  //   objective: "",
-  //   activities: "",
-  //   resources: "",
-  //   homework: "",
-  // });
+  const [sessionDetails, setSessionDetails] = useState({
+    objective: "",
+    activities: "",
+    resources: "",
+    homework: "",
+  });
 
   // Example subjects array
   const subjects = [
@@ -66,6 +65,10 @@ function App() {
         subject={selectedSubject}
       />
       <UnitDescription unitTitle={unitTitle} />
+      <SessionInput
+        sessionDetails={sessionDetails}
+        setSessionDetails={setSessionDetails}
+      />
     </div>
   );
 }
