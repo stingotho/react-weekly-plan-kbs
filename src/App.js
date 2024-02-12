@@ -1,14 +1,16 @@
 import React, { useState } from "react";
 import "./App.css";
 
-import NameInput from "./components/NameInput"; // Adjust the path as necessary
-import SubjectSelector from "./components/SubjectSelector"; // Import the new component
+import NameInput from "./components/NameInput";
+import SubjectSelector from "./components/SubjectSelector";
+import WeekNumberInput from "./components/WeekNumberInput";
 
 function App() {
   const [teacherName, setTeacherName] = useState("");
   const [selectedSubject, setSelectedSubject] = useState("");
+  const [weekNumber, setWeekNumber] = useState("");
+
   // const [dateRange, setDateRange] = useState({ start: null, end: null });
-  // const [weekNumber, setWeekNumber] = useState("");
   // const [gradeLevel, setGradeLevel] = useState("");
   // const [unitTitle, setUnitTitle] = useState("");
   // const [unitDescription, setUnitDescription] = useState("");
@@ -35,6 +37,10 @@ function App() {
         value={selectedSubject}
         onChange={(e) => setSelectedSubject(e.target.value)}
         subjects={subjects}
+      />
+      <WeekNumberInput
+        value={weekNumber}
+        onChange={(e) => setWeekNumber(e.target.value)}
       />
     </div>
   );
