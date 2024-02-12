@@ -10,6 +10,7 @@ import GradeLevelSelector from "./components/GradeLevelSelector";
 import UnitTitleSelector from "./components/UnitTitleSelector";
 import UnitDescription from "./components/UnitDescription";
 import SessionInput from "./components/SessionInput";
+import PdfGeneratorButton from "./components/PdfGeneratorButton"; // Import the new component
 
 function App() {
   const [teacherName, setTeacherName] = useState("");
@@ -33,6 +34,16 @@ function App() {
     { value: "history", label: "History" },
     // Add more subjects as needed
   ];
+
+  const formData = {
+    teacherName,
+    selectedSubject,
+    weekNumber,
+    dateRange, // You might want to format this to a more readable form
+    gradeLevel,
+    unitTitle,
+    sessionDetails, // This might need to be formatted or processed to display nicely in the PDF
+  };
 
   return (
     <div className="app">
@@ -69,6 +80,7 @@ function App() {
         sessionDetails={sessionDetails}
         setSessionDetails={setSessionDetails}
       />
+      <PdfGeneratorButton formData={formData} />
     </div>
   );
 }
