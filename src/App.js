@@ -7,6 +7,7 @@ import WeekNumberInput from "./components/WeekNumberInput";
 import DateRangePicker from "./components/DateRangePicker";
 import "react-datepicker/dist/react-datepicker.css";
 import GradeLevelSelector from "./components/GradeLevelSelector";
+import UnitTitleSelector from "./components/UnitTitleSelector";
 function App() {
   const [teacherName, setTeacherName] = useState("");
   const [selectedSubject, setSelectedSubject] = useState("");
@@ -14,8 +15,7 @@ function App() {
   const [dateRange, setDateRange] = useState([null, null]);
   const [startDate, endDate] = dateRange;
   const [gradeLevel, setGradeLevel] = useState("");
-
-  // const [unitTitle, setUnitTitle] = useState("");
+  const [unitTitle, setUnitTitle] = useState("");
   // const [unitDescription, setUnitDescription] = useState("");
   // const [sessionDetails, setSessionDetails] = useState({
   //   objective: "",
@@ -55,6 +55,12 @@ function App() {
       <GradeLevelSelector
         value={gradeLevel}
         onChange={(e) => setGradeLevel(e.target.value)}
+      />
+      <UnitTitleSelector
+        value={unitTitle}
+        onChange={(e) => setUnitTitle(e.target.value)}
+        gradeLevel={gradeLevel}
+        subject={selectedSubject}
       />
     </div>
   );
