@@ -47,11 +47,26 @@ function App() {
     unitDescriptions[unitTitle] ||
     "Please select a unit title to see the description.";
 
+  // Define the formatDate function within App.js
+  const formatDate = (date) => {
+    if (!date) return "";
+    let day = date.getDate().toString().padStart(2, "0");
+    let month = (date.getMonth() + 1).toString().padStart(2, "0"); // JavaScript months are 0-indexed
+    let year = date.getFullYear().toString().substr(-2); // Get last 2 digits of year
+    return `${day}/${month}/${year}`;
+  };
+
+  // Before setting up formData, format the startDate and endDate
+  const formattedStartDate = formatDate(startDate);
+  const formattedEndDate = formatDate(endDate);
+  const formattedDateRange =
+    startDate && endDate ? `${formattedStartDate} to ${formattedEndDate}` : "";
+
   const formData = {
     teacherName,
     selectedSubject,
     weekNumber,
-    dateRange, // You might want to format this to a more readable form
+    dateRange: formattedDateRange, // Use the formatted date range here
     gradeLevel,
     unitTitle,
     unitDescription: currentUnitDescription, // Add the unit description to formData
