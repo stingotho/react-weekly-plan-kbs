@@ -21,7 +21,11 @@ function UnitTitleSelector({ value, onChange, gradeLevel, subject }) {
       : [];
 
   return (
-    <select value={value} onChange={onChange}>
+    <select
+      className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+      value={value}
+      onChange={onChange}
+    >
       <option value="">Select a Unit Title</option>
       {unitTitles.map((title, index) => (
         <option key={index} value={title}>
