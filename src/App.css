@@ -1,0 +1,62 @@
+/* Customizing the calendar pop-up/modal appearance */
+.custom-datepicker .react-datepicker {
+  border: none; /* Remove default border */
+  font-family: "Inter", sans-serif; /* Example: Setting a custom font */
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05); /* TailwindCSS shadow-lg */
+}
+
+.custom-datepicker .react-datepicker__header {
+  background-color: #2563eb; /* TailwindCSS blue-500 */
+  border-bottom: none;
+}
+
+.custom-datepicker .react-datepicker__current-month,
+.custom-datepicker .react-datepicker-time__header,
+.custom-datepicker .react-datepicker-year-header {
+  color: #fff;
+}
+
+.custom-datepicker .react-datepicker__day-name,
+.custom-datepicker.react-datepicker__day,
+.custom-datepicker .react-datepicker__time-name {
+  color: #ffffff; /* TailwindCSS blue-600 */
+}
+
+.custom-datepicker .react-datepicker__day--selected,
+.custom-datepicker .react-datepicker__day--in-range,
+.custom-datepicker .react-datepicker__day--in-selecting-range,
+.custom-datepicker .react-datepicker__time-list-item--selected {
+  background-color: #1d4ed8; /* TailwindCSS blue-600 */
+  color: #fff;
+}
+
+.custom-datepicker .react-datepicker__day--keyboard-selected,
+.custom-datepicker .react-datepicker__time-list-item--keyboard-selected {
+  background-color: #93c5fd; /* TailwindCSS blue-300 */
+  color: #1d4ed8; /* TailwindCSS blue-600 */
+}
+
+.custom-datepicker .react-datepicker__navigation--previous {
+  border-right-color: #fff; /* Adjusts the color of the previous month arrow */
+}
+
+.custom-datepicker .react-datepicker__navigation--next {
+  border-left-color: #fff; /* Adjusts the color of the next month arrow */
+}
+
+/* Adjust the hover state for days */
+.custom-datepicker .react-datepicker__day:hover,
+.custom-datepicker .react-datepicker__time-list-item:hover {
+  background-color: #bfdbfe; /* TailwindCSS blue-200 */
+}
+
+/* Customizing the month navigation buttons for a more modern look */
+.custom-datepicker .react-datepicker__navigation {
+  top: 10px;
+  width: 20px;
+  height: 20px;
+  background-color: #fff; /* Background color */
+  border-radius: 50%; /* Makes the buttons circular */
+  justify-content: center; /* Center align the arrow icons */
+}
