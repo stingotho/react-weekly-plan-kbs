@@ -11,7 +11,7 @@ function SessionInput({ sessionDetails, setSessionDetails }) {
 
   return (
     <div className="space-y-4">
-      <h3 className="text-md font-semibold text-gray-900">Session Details</h3>
+      <h3 className="text-lg font-semibold text-gray-900">Session Details</h3>
       <div className="flex items-center space-x-4">
         <label htmlFor="objective" className="flex-1 text-right mr-4">
           Objective:
@@ -21,6 +21,7 @@ function SessionInput({ sessionDetails, setSessionDetails }) {
           id="objective"
           name="objective"
           value={sessionDetails.objective}
+          rows="4"
           onChange={handleChange}
         />
       </div>
@@ -33,6 +34,7 @@ function SessionInput({ sessionDetails, setSessionDetails }) {
           id="activities"
           name="activities"
           value={sessionDetails.activities}
+          rows="4"
           onChange={handleChange}
         />
       </div>
@@ -45,6 +47,7 @@ function SessionInput({ sessionDetails, setSessionDetails }) {
           id="resources"
           name="resources"
           value={sessionDetails.resources}
+          rows="4"
           onChange={handleChange}
         />
       </div>
@@ -57,6 +60,7 @@ function SessionInput({ sessionDetails, setSessionDetails }) {
           id="homework"
           name="homework"
           value={sessionDetails.homework}
+          rows="4"
           onChange={handleChange}
         />
       </div>
