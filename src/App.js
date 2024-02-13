@@ -34,6 +34,18 @@ function App() {
     { value: "history", label: "History" },
     // Add more subjects as needed
   ];
+  // Define unit descriptions
+  const unitDescriptions = {
+    "Algebra I": "Introduction to algebraic expressions and equations.",
+    Geometry: "Exploring the properties of shapes and forms.",
+    Biology: "Study of life and living organisms.",
+    "Earth Science": "Investigating earth and its processes.",
+    // Add more descriptions as needed
+  };
+  // Determine the current unit description
+  const currentUnitDescription =
+    unitDescriptions[unitTitle] ||
+    "Please select a unit title to see the description.";
 
   const formData = {
     teacherName,
@@ -42,6 +54,7 @@ function App() {
     dateRange, // You might want to format this to a more readable form
     gradeLevel,
     unitTitle,
+    unitDescription: currentUnitDescription, // Add the unit description to formData
     sessionDetails, // This might need to be formatted or processed to display nicely in the PDF
   };
 
@@ -75,7 +88,7 @@ function App() {
         gradeLevel={gradeLevel}
         subject={selectedSubject}
       />
-      <UnitDescription unitTitle={unitTitle} />
+      <UnitDescription description={currentUnitDescription} />
       <SessionInput
         sessionDetails={sessionDetails}
         setSessionDetails={setSessionDetails}
