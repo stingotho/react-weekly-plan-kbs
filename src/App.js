@@ -74,41 +74,43 @@ function App() {
   };
 
   return (
-    <div className="app">
-      <h1>Weekly Plan Input Form</h1>
-      <NameInput value={teacherName} onChange={setTeacherName} />
-      <SubjectSelector
-        value={selectedSubject}
-        onChange={(e) => setSelectedSubject(e.target.value)}
-        subjects={subjects}
-      />
-      <WeekNumberInput
-        value={weekNumber}
-        onChange={(e) => setWeekNumber(e.target.value)}
-      />
-      <DateRangePicker
-        startDate={startDate}
-        endDate={endDate}
-        onChange={(update) => {
-          setDateRange(update);
-        }}
-      />
-      <GradeLevelSelector
-        value={gradeLevel}
-        onChange={(e) => setGradeLevel(e.target.value)}
-      />
-      <UnitTitleSelector
-        value={unitTitle}
-        onChange={(e) => setUnitTitle(e.target.value)}
-        gradeLevel={gradeLevel}
-        subject={selectedSubject}
-      />
-      <UnitDescription description={currentUnitDescription} />
-      <SessionInput
-        sessionDetails={sessionDetails}
-        setSessionDetails={setSessionDetails}
-      />
-      <PdfGeneratorButton formData={formData} />
+    <div className="App">
+      <div className="form-container">
+        <h1>Weekly Plan Input Form</h1>
+        <NameInput value={teacherName} onChange={setTeacherName} />
+        <SubjectSelector
+          value={selectedSubject}
+          onChange={(e) => setSelectedSubject(e.target.value)}
+          subjects={subjects}
+        />
+        <WeekNumberInput
+          value={weekNumber}
+          onChange={(e) => setWeekNumber(e.target.value)}
+        />
+        <DateRangePicker
+          startDate={startDate}
+          endDate={endDate}
+          onChange={(update) => {
+            setDateRange(update);
+          }}
+        />
+        <GradeLevelSelector
+          value={gradeLevel}
+          onChange={(e) => setGradeLevel(e.target.value)}
+        />
+        <UnitTitleSelector
+          value={unitTitle}
+          onChange={(e) => setUnitTitle(e.target.value)}
+          gradeLevel={gradeLevel}
+          subject={selectedSubject}
+        />
+        <UnitDescription description={currentUnitDescription} />
+        <SessionInput
+          sessionDetails={sessionDetails}
+          setSessionDetails={setSessionDetails}
+        />
+        <PdfGeneratorButton formData={formData} />
+      </div>
     </div>
   );
 }
