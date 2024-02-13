@@ -4,59 +4,47 @@ import jsPDF from "jspdf";
 function PdfGeneratorButton({ formData }) {
   const generatePDF = () => {
     const doc = new jsPDF();
-
-    // Basic styling
-    const lineHeight = 10;
+    const pageWidth = doc.internal.pageSize.getWidth();
+    const pageHeight = doc.internal.pageSize.getHeight();
+    const margin = 10; // Margin for text
+    const maxLineHeight = 10; // Maximum line height before adding a new page
     let linePosition = 10; // Initial line position
 
-    // Add a title
-    doc.setFontSize(16);
-    doc.text("Weekly Plan", 105, linePosition, "center");
-    linePosition += lineHeight * 2; // Double space before starting content
+    // Utility function to add text with automatic page handling
+    const addText = (text, options = {}) => {
+      const { isTitle = false } = options;
+      let lines = doc.splitTextToSize(text, pageWidth - 2 * margin); // Split text to size
+      lines.forEach((line, index) => {
+        // Check if we need to add a new page
+        if (linePosition > pageHeight - margin) {
+          doc.addPage();
+          linePosition = margin; // Reset line position for new page
+        }
+        doc.setFontSize(isTitle ? 14 : 12); // Set font size based on whether text is a title
+        doc.text(line, margin, linePosition);
+        linePosition += maxLineHeight; // Increase line position
+      });
+      linePosition += maxLineHeight; // Extra space after block of text or title
+    };
 
-    // Reset font size for the rest of the content
-    doc.setFontSize(12);
+    // Document Title
+    addText("Weekly Plan", { isTitle: true });
 
-    // Teacher Name
-    doc.text(`Teacher's Name: ${formData.teacherName}`, 10, linePosition);
-    linePosition += lineHeight;
-
-    // Subject
-    doc.text(`Subject: ${formData.selectedSubject}`, 10, linePosition);
-    linePosition += lineHeight;
-
-    // Grade Level
-    doc.text(`Grade Level: ${formData.gradeLevel}`, 10, linePosition);
-    linePosition += lineHeight;
-
-    // Week Number
-    doc.text(`Week Number: ${formData.weekNumber}`, 10, linePosition);
-    linePosition += lineHeight;
-
-    // Date Range
-    doc.text(`Date Range: ${formData.dateRange}`, 10, linePosition);
-    linePosition += lineHeight;
-
-    // Unit Title
-    doc.text(`Unit Title: ${formData.unitTitle}`, 10, linePosition);
-    linePosition += lineHeight;
-
-    // Unit Description
-    doc.text(`Unit Description: ${formData.unitDescription}`, 10, linePosition);
-    linePosition += lineHeight;
+    // Adding basic form data to the PDF
+    addText(`Teacher's Name: ${formData.teacherName}`);
+    addText(`Subject: ${formData.selectedSubject}`);
+    addText(`Grade Level: ${formData.gradeLevel}`);
+    addText(`Week Number: ${formData.weekNumber}`);
+    addText(`Date Range: ${formData.dateRange}`);
+    addText(`Unit Title: ${formData.unitTitle}`);
+    // For a long Unit Description, splitTextToSize will wrap the text
+    addText(`Unit Description: ${formData.unitDescription}`);
 
     // Adding session details
-    doc.setFontSize(14);
     formData.sessionDetails.forEach((session, index) => {
-      linePosition += lineHeight; // Add space before each session
-      doc.text(`Session ${index + 1}:`, 10, linePosition);
-      linePosition += lineHeight;
-
-      doc.setFontSize(12); // Reset font size for session content
+      addText(`Session ${index + 1}:`, { isTitle: true });
       Object.entries(session).forEach(([key, value]) => {
-        let text = `${key.charAt(0).toUpperCase() + key.slice(1)}: ${value}`;
-        doc.text(text, 10, linePosition);
-        linePosition += lineHeight;
+        addText(`${key.charAt(0).toUpperCase() + key.slice(1)}: ${value}`);
       });
     });
 
@@ -72,7 +60,6 @@ function PdfGeneratorButton({ formData }) {
       Generate PDF
     </button>
   );
-  // <button onClick={generatePDF}>Generate PDF</button>;
 }
 
 export default PdfGeneratorButton;
