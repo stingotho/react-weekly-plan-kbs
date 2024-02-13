@@ -76,7 +76,9 @@ function App() {
   return (
     <div className="min-h-screen bg-gray-100 flex justify-center items-center">
       <div className="w-full max-w-lg p-8 space-y-4 bg-white rounded-lg shadow-md">
-        <h1>Weekly Plan Input Form</h1>
+        <h1 className="text-xl font-semibold text-gray-900">
+          Weekly Plan Input Form
+        </h1>
         <NameInput value={teacherName} onChange={setTeacherName} />
         <SubjectSelector
           value={selectedSubject}

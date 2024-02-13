@@ -11,7 +11,7 @@ function SessionInput({ sessionDetails, setSessionDetails }) {
 
   return (
     <div>
-      <h3>Session Details</h3>
+      <h3 className="text-md font-semibold text-gray-900">Session Details</h3>
       <div>
         <label htmlFor="objective">Objective:</label>
         <textarea

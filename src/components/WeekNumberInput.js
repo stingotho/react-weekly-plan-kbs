@@ -5,6 +5,7 @@ function WeekNumberInput({ value, onChange }) {
     <div>
       {/* <label htmlFor="weekNumber">Week Number:</label> */}
       <input
+        className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
         type="number"
         id="weekNumber"
         name="weekNumber"

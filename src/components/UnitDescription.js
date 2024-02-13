@@ -4,7 +4,7 @@ import React from "react";
 function UnitDescription({ description }) {
   return (
     <div>
-      <h3>Unit Description</h3>
+      <h3 className="text-md font-semibold text-gray-900">Unit Description</h3>
       <p>{description}</p>
     </div>
   );
