@@ -3,7 +3,7 @@ import React from "react";
 function WeekNumberInput({ value, onChange }) {
   return (
     <div>
-      <label htmlFor="weekNumber">Week Number:</label>
+      {/* <label htmlFor="weekNumber">Week Number:</label> */}
       <input
         type="number"
         id="weekNumber"

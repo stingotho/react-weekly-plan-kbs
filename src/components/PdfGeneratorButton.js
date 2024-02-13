@@ -67,7 +67,15 @@ function PdfGeneratorButton({ formData }) {
     doc.save("weekly-plan.pdf");
   };
 
-  return <button onClick={generatePDF}>Generate PDF</button>;
+  return (
+    <button
+      onClick={generatePDF}
+      className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+    >
+      Generate PDF
+    </button>
+  );
+  // <button onClick={generatePDF}>Generate PDF</button>;
 }
 
 export default PdfGeneratorButton;
