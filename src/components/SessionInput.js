@@ -1,48 +1,45 @@
 import React from "react";
 
-function SessionInput({ sessionDetails, setSessionDetails }) {
+function SessionInput({ sessionIndex, sessionDetails, updateSession }) {
+  // Handle changes for each input field within a session
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setSessionDetails((prevDetails) => ({
-      ...prevDetails,
-      [name]: value,
-    }));
+    // Call updateSession from the parent component, passing the sessionIndex, field name, and new value
+    updateSession(sessionIndex, name, value);
   };
 
   return (
     <div className="space-y-6">
-      {" "}
-      {/* Increase space between each form group */}
-      <h3 className="text-lg font-semibold text-gray-900">Session Details</h3>
+      <h3 className="text-lg font-semibold text-gray-900">
+        Session Details #{sessionIndex + 1}
+      </h3>
       <div className="space-y-2">
-        {" "}
-        {/* Add vertical space between label and textarea */}
         <label
-          htmlFor="objective"
+          htmlFor={`objective-${sessionIndex}`}
           className="block text-sm font-medium text-gray-700"
         >
           Objective:
         </label>
         <textarea
-          className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-          id="objective"
+          id={`objective-${sessionIndex}`}
           name="objective"
+          className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           value={sessionDetails.objective}
-          rows="4" // Adjust rows as needed for size
+          rows="4"
           onChange={handleChange}
         />
       </div>
       <div className="space-y-2">
         <label
-          htmlFor="activities"
+          htmlFor={`activities-${sessionIndex}`}
           className="block text-sm font-medium text-gray-700"
         >
           Learning/Activities:
         </label>
         <textarea
-          className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-          id="activities"
+          id={`activities-${sessionIndex}`}
           name="activities"
+          className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           value={sessionDetails.activities}
           rows="4"
           onChange={handleChange}
@@ -50,15 +47,15 @@ function SessionInput({ sessionDetails, setSessionDetails }) {
       </div>
       <div className="space-y-2">
         <label
-          htmlFor="resources"
+          htmlFor={`resources-${sessionIndex}`}
           className="block text-sm font-medium text-gray-700"
         >
           Resources/Materials:
         </label>
         <textarea
-          className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-          id="resources"
+          id={`resources-${sessionIndex}`}
           name="resources"
+          className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           value={sessionDetails.resources}
           rows="4"
           onChange={handleChange}
@@ -66,15 +63,15 @@ function SessionInput({ sessionDetails, setSessionDetails }) {
       </div>
       <div className="space-y-2">
         <label
-          htmlFor="homework"
+          htmlFor={`homework-${sessionIndex}`}
           className="block text-sm font-medium text-gray-700"
         >
           Homework:
         </label>
         <textarea
-          className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-          id="homework"
+          id={`homework-${sessionIndex}`}
           name="homework"
+          className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           value={sessionDetails.homework}
           rows="4"
           onChange={handleChange}

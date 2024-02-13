@@ -45,22 +45,19 @@ function PdfGeneratorButton({ formData }) {
     doc.text(`Unit Description: ${formData.unitDescription}`, 10, linePosition);
     linePosition += lineHeight;
 
-    // Session Details Heading
+    // Adding session details
     doc.setFontSize(14);
-    doc.text("Session Details:", 10, linePosition);
-    linePosition += lineHeight;
-
-    // Reset font size
-    doc.setFontSize(12);
-
-    // Iterate over session details
-    Object.entries(formData.sessionDetails).forEach(([key, value]) => {
-      doc.text(
-        `${key.charAt(0).toUpperCase() + key.slice(1)}: ${value}`,
-        10,
-        linePosition
-      );
+    formData.sessionDetails.forEach((session, index) => {
+      linePosition += lineHeight; // Add space before each session
+      doc.text(`Session ${index + 1}:`, 10, linePosition);
       linePosition += lineHeight;
+
+      doc.setFontSize(12); // Reset font size for session content
+      Object.entries(session).forEach(([key, value]) => {
+        let text = `${key.charAt(0).toUpperCase() + key.slice(1)}: ${value}`;
+        doc.text(text, 10, linePosition);
+        linePosition += lineHeight;
+      });
     });
 
     // Save the PDF

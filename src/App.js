@@ -20,12 +20,14 @@ function App() {
   const [startDate, endDate] = dateRange;
   const [gradeLevel, setGradeLevel] = useState("");
   const [unitTitle, setUnitTitle] = useState("");
-  const [sessionDetails, setSessionDetails] = useState({
-    objective: "",
-    activities: "",
-    resources: "",
-    homework: "",
-  });
+  const [sessionDetails, setSessionDetails] = useState([
+    {
+      objective: "",
+      activities: "",
+      resources: "",
+      homework: "",
+    },
+  ]);
 
   // Example subjects array
   const subjects = [
@@ -36,7 +38,8 @@ function App() {
   ];
   // Define unit descriptions
   const unitDescriptions = {
-    "Algebra I": "Introduction to algebraic expressions and equations.",
+    "Algebra I":
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
     Geometry: "Exploring the properties of shapes and forms.",
     Biology: "Study of life and living organisms.",
     "Earth Science": "Investigating earth and its processes.",
@@ -46,7 +49,20 @@ function App() {
   const currentUnitDescription =
     unitDescriptions[unitTitle] ||
     "Please select a unit title to see the description.";
+  // Function to handle adding a new session
+  const addSession = () => {
+    setSessionDetails([
+      ...sessionDetails,
+      { objective: "", activities: "", resources: "", homework: "" },
+    ]);
+  };
 
+  // Function to handle changes in any session input
+  const updateSession = (index, name, value) => {
+    const updatedSessions = [...sessionDetails];
+    updatedSessions[index] = { ...updatedSessions[index], [name]: value };
+    setSessionDetails(updatedSessions);
+  };
   // Define the formatDate function within App.js
   const formatDate = (date) => {
     if (!date) return "";
@@ -107,10 +123,22 @@ function App() {
           subject={selectedSubject}
         />
         <UnitDescription description={currentUnitDescription} />
-        <SessionInput
-          sessionDetails={sessionDetails}
-          setSessionDetails={setSessionDetails}
-        />
+        <div className="space-y-4">
+          {sessionDetails.map((session, index) => (
+            <SessionInput
+              key={index}
+              sessionIndex={index}
+              sessionDetails={session}
+              updateSession={updateSession}
+            />
+          ))}
+          <button
+            onClick={addSession}
+            className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700"
+          >
+            Add Session
+          </button>
+        </div>
         <PdfGeneratorButton formData={formData} />
       </div>
     </div>
